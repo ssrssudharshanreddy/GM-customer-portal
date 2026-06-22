@@ -24,7 +24,8 @@ async function refreshAccessToken() {
     body: JSON.stringify({ refresh_token }),
   });
   if (!res.ok) throw new Error('Token refresh failed');
-  const data = await res.json();
+  const json = await res.json();
+  const data = json.success !== undefined && json.data !== undefined ? json.data : json;
   setTokens(data);
   return data.access_token;
 }
@@ -59,7 +60,8 @@ async function request(path, options = {}, retry = true) {
   }
 
   const text = await res.text();
-  return text ? JSON.parse(text) : null;
+  const json = text ? JSON.parse(text) : null;
+  return json?.success !== undefined && json.data !== undefined ? json.data : json;
 }
 
 export const api = {
@@ -88,7 +90,8 @@ export const api = {
         const body = await res.json().catch(() => ({}));
         throw Object.assign(new Error(body.message || 'Upload failed'), { status: res.status });
       }
-      return res.json();
+      const json = await res.json();
+      return json.success !== undefined && json.data !== undefined ? json.data : json;
     });
   },
 };
