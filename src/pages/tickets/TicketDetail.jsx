@@ -41,11 +41,9 @@ export default function TicketDetail() {
 
   return (
     <div>
-      <Link href="/tickets">
-        <a className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
+      <Link href="/tickets" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
           <ChevronLeft className="w-4 h-4" /> Back to Tickets
-        </a>
-      </Link>
+        </Link>
 
       <div className="flex items-start justify-between mb-6 flex-wrap gap-3">
         <div>

@@ -99,11 +99,9 @@ export default function CreateReturn() {
 
   return (
     <div>
-      <Link href="/returns">
-        <a className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
+      <Link href="/returns" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
           <ChevronLeft className="w-4 h-4" /> Back to Returns
-        </a>
-      </Link>
+        </Link>
       <PageHeader title="Request Return" subtitle="Submit a return request for a delivered order" />
 
       <div className="max-w-lg">

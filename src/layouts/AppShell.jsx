@@ -24,19 +24,18 @@ function NavItem({ href, label, icon: Icon, onClick }) {
   const [location] = useLocation();
   const active = location === href || (href !== '/' && location.startsWith(href));
   return (
-    <Link href={href}>
-      <a
-        onClick={onClick}
-        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
-          ${active
-            ? 'bg-brand-50 text-brand-700'
-            : 'text-text-secondary hover:bg-surface-100 hover:text-text-primary'
-          }`}
-      >
-        <Icon className="w-5 h-5 flex-shrink-0" />
-        {label}
-        {active && <ChevronRight className="w-4 h-4 ml-auto text-brand-400" />}
-      </a>
+    <Link
+      href={href}
+      onClick={onClick}
+      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
+        ${active
+          ? 'bg-brand-50 text-brand-700'
+          : 'text-text-secondary hover:bg-surface-100 hover:text-text-primary'
+        }`}
+    >
+      <Icon className="w-5 h-5 flex-shrink-0" />
+      {label}
+      {active && <ChevronRight className="w-4 h-4 ml-auto text-brand-400" />}
     </Link>
   );
 }
@@ -76,14 +75,16 @@ function Sidebar({ onClose }) {
 
       {/* Footer */}
       <div className="border-t border-surface-200 p-3 space-y-1">
-        <Link href="/profile">
-          <a onClick={onClose} className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-text-secondary hover:bg-surface-100 hover:text-text-primary transition-colors">
-            <User className="w-5 h-5" />
-            <div className="flex-1 min-w-0">
-              <div className="font-medium text-text-primary truncate">{user?.email}</div>
-              <div className="text-xs text-text-muted">My Profile</div>
-            </div>
-          </a>
+        <Link
+          href="/profile"
+          onClick={onClose}
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-text-secondary hover:bg-surface-100 hover:text-text-primary transition-colors"
+        >
+          <User className="w-5 h-5" />
+          <div className="flex-1 min-w-0">
+            <div className="font-medium text-text-primary truncate">{user?.email}</div>
+            <div className="text-xs text-text-muted">My Profile</div>
+          </div>
         </Link>
         <button
           onClick={handleLogout}
@@ -133,25 +134,28 @@ export default function AppShell({ children }) {
           </button>
           <div className="hidden lg:block" />
           <div className="flex items-center gap-3">
-            <Link href="/cart">
-              <a className="relative p-2 rounded-lg text-text-secondary hover:bg-surface-100 transition-colors">
-                <ShoppingCart className="w-5 h-5" />
-                {cartCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-brand-600 text-white text-xs rounded-full flex items-center justify-center font-medium">
-                    {cartCount > 9 ? '9+' : cartCount}
-                  </span>
-                )}
-              </a>
+            <Link
+              href="/cart"
+              className="relative p-2 rounded-lg text-text-secondary hover:bg-surface-100 transition-colors"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-brand-600 text-white text-xs rounded-full flex items-center justify-center font-medium">
+                  {cartCount > 9 ? '9+' : cartCount}
+                </span>
+              )}
             </Link>
-            <Link href="/notifications">
-              <a className="p-2 rounded-lg text-text-secondary hover:bg-surface-100 transition-colors">
-                <Bell className="w-5 h-5" />
-              </a>
+            <Link
+              href="/notifications"
+              className="p-2 rounded-lg text-text-secondary hover:bg-surface-100 transition-colors"
+            >
+              <Bell className="w-5 h-5" />
             </Link>
-            <Link href="/profile">
-              <a className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-semibold text-sm">
-                <User className="w-4 h-4" />
-              </a>
+            <Link
+              href="/profile"
+              className="w-8 h-8 bg-brand-100 rounded-full flex items-center justify-center text-brand-700 font-semibold text-sm"
+            >
+              <User className="w-4 h-4" />
             </Link>
           </div>
         </div>

@@ -71,6 +71,12 @@ export default function Login() {
           </div>
         </div>
 
+        <div className="flex justify-end">
+          <Link href="/forgot-password" className="text-xs text-brand-600 font-medium hover:underline">
+            Forgot password?
+          </Link>
+        </div>
+
         <button
           type="submit"
           disabled={loading}
@@ -87,9 +93,7 @@ export default function Login() {
 
       <p className="text-center text-sm text-text-secondary mt-6">
         New to GangaMaxx?{' '}
-        <Link href="/register">
-          <a className="text-brand-600 font-medium hover:underline">Register your business</a>
-        </Link>
+        <Link href="/register" className="text-brand-600 font-medium hover:underline">Register your business</Link>
       </p>
     </AuthLayout>
   );

@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import ForgotPassword from './pages/auth/ForgotPassword';
 import ApplicationTracking from './pages/tracking/ApplicationTracking';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProductCatalog from './pages/products/ProductCatalog';
@@ -34,8 +35,11 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 30 * 1000,
-      retry: 1,
+      retry: 2,
       refetchOnWindowFocus: false,
+    },
+    mutations: {
+      retry: 2,
     },
   },
 });
@@ -62,6 +66,7 @@ function CustomerRouter() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/forgot-password" component={ForgotPassword} />
         <Route><Redirect to="/login" /></Route>
       </Switch>
     );
@@ -71,6 +76,7 @@ function CustomerRouter() {
     <Switch>
       <Route path="/login"><Redirect to="/" /></Route>
       <Route path="/register"><Redirect to="/" /></Route>
+      <Route path="/forgot-password"><Redirect to="/" /></Route>
 
       {/* Application tracking — for all logged-in customers */}
       <Route path="/tracking" component={ApplicationTracking} />

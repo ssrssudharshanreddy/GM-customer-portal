@@ -28,11 +28,9 @@ export default function Tickets() {
         title="Support Tickets"
         subtitle={`${total} tickets`}
         action={
-          <Link href="/tickets/new">
-            <a className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          <Link href="/tickets/new" className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
               <Plus className="w-4 h-4" /> New Ticket
-            </a>
-          </Link>
+            </Link>
         }
       />
 
@@ -54,18 +52,15 @@ export default function Tickets() {
           title="No tickets"
           description="Raise a support ticket if you need help with anything."
           action={
-            <Link href="/tickets/new">
-              <a className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">
+            <Link href="/tickets/new" className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">
                 <Plus className="w-4 h-4" /> Raise Ticket
-              </a>
-            </Link>
+              </Link>
           }
         />
       ) : (
         <div className="space-y-3">
           {tickets.map((ticket) => (
-            <Link key={ticket.id} href={`/tickets/${ticket.id}`}>
-              <a className="block bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow p-4">
+            <Link key={ticket.id} href={`/tickets/${ticket.id}`} className="block bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
@@ -81,8 +76,7 @@ export default function Tickets() {
                     <p className="text-xs text-text-muted mt-0.5">{formatDate(ticket.created_at)}</p>
                   </div>
                 </div>
-              </a>
-            </Link>
+              </Link>
           ))}
           {total > 15 && (
             <div className="flex justify-center gap-2 pt-4">

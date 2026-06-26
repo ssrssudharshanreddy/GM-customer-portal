@@ -66,11 +66,9 @@ export default function CreateTicket() {
 
   return (
     <div>
-      <Link href="/tickets">
-        <a className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
+      <Link href="/tickets" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
           <ChevronLeft className="w-4 h-4" /> Back to Tickets
-        </a>
-      </Link>
+        </Link>
       <PageHeader title="Raise Support Ticket" subtitle="Describe your issue and we'll help you resolve it" />
 
       <div className="max-w-lg">

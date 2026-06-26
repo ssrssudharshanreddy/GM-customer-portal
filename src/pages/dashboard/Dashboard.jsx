@@ -19,13 +19,11 @@ function QuickAction({ href, icon: Icon, label, color }) {
     purple: 'bg-purple-50 text-purple-700 hover:bg-purple-100',
   };
   return (
-    <Link href={href}>
-      <a className={`flex items-center gap-3 p-4 rounded-xl font-medium text-sm transition-colors ${colors[color] || colors.blue}`}>
+    <Link href={href} className={`flex items-center gap-3 p-4 rounded-xl font-medium text-sm transition-colors ${colors[color] || colors.blue}`}>
         <Icon className="w-5 h-5" />
         {label}
         <ArrowRight className="w-4 h-4 ml-auto opacity-60" />
-      </a>
-    </Link>
+      </Link>
   );
 }
 
@@ -76,9 +74,7 @@ export default function Dashboard() {
             </p>
             <p className="text-xs text-brand-700 mt-0.5">{notifications[0]?.message}</p>
           </div>
-          <Link href="/notifications">
-            <a className="text-xs text-brand-600 font-medium hover:underline">View all</a>
-          </Link>
+          <Link href="/notifications" className="text-xs text-brand-600 font-medium hover:underline">View all</Link>
         </div>
       )}
 
@@ -120,17 +116,14 @@ export default function Dashboard() {
         <div className="bg-white rounded-xl shadow-card p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-text-primary">Recent Orders</h2>
-            <Link href="/orders">
-              <a className="text-xs text-brand-600 hover:underline font-medium">View all</a>
-            </Link>
+            <Link href="/orders" className="text-xs text-brand-600 hover:underline font-medium">View all</Link>
           </div>
           {orders.length === 0 ? (
             <div className="text-center py-8 text-text-muted text-sm">No orders yet</div>
           ) : (
             <div className="space-y-3">
               {orders.map((order) => (
-                <Link key={order.id} href={`/orders/${order.id}`}>
-                  <a className="flex items-center justify-between p-3 rounded-lg hover:bg-surface-50 transition-colors group">
+                <Link key={order.id} href={`/orders/${order.id}`} className="flex items-center justify-between p-3 rounded-lg hover:bg-surface-50 transition-colors group">
                     <div>
                       <p className="text-sm font-medium text-text-primary group-hover:text-brand-600">
                         {order.order_number}
@@ -141,8 +134,7 @@ export default function Dashboard() {
                       <StatusChip status={order.status} />
                       <p className="text-xs text-text-muted mt-1">{formatCurrency(order.grand_total)}</p>
                     </div>
-                  </a>
-                </Link>
+                  </Link>
               ))}
             </div>
           )}
@@ -152,9 +144,7 @@ export default function Dashboard() {
         <div className="bg-white rounded-xl shadow-card p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-text-primary">Unpaid Invoices</h2>
-            <Link href="/invoices">
-              <a className="text-xs text-brand-600 hover:underline font-medium">View all</a>
-            </Link>
+            <Link href="/invoices" className="text-xs text-brand-600 hover:underline font-medium">View all</Link>
           </div>
           {invoices.length === 0 ? (
             <div className="text-center py-8 text-text-muted text-sm">No pending invoices</div>

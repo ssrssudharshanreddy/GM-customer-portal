@@ -28,11 +28,9 @@ export default function OrderDetail() {
 
   return (
     <div>
-      <Link href="/orders">
-        <a className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
+      <Link href="/orders" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
           <ChevronLeft className="w-4 h-4" /> Back to Orders
-        </a>
-      </Link>
+        </Link>
 
       <div className="flex items-start justify-between mb-6 flex-wrap gap-3">
         <div>
@@ -134,11 +132,9 @@ export default function OrderDetail() {
           {order.invoice_number && (
             <div className="bg-white rounded-xl shadow-card p-5">
               <h2 className="text-sm font-semibold text-text-primary mb-2">Invoice</h2>
-              <Link href={`/invoices/${order.invoice_id}`}>
-                <a className="text-sm text-brand-600 hover:underline font-medium">
+              <Link href={`/invoices/${order.invoice_id}`} className="text-sm text-brand-600 hover:underline font-medium">
                   {order.invoice_number}
-                </a>
-              </Link>
+                </Link>
             </div>
           )}
 

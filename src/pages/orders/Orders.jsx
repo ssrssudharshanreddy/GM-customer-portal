@@ -61,8 +61,7 @@ export default function Orders() {
       ) : (
         <div className="space-y-3">
           {orders.map((order) => (
-            <Link key={order.id} href={`/orders/${order.id}`}>
-              <a className="block bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow p-4">
+            <Link key={order.id} href={`/orders/${order.id}`} className="block bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
@@ -79,8 +78,7 @@ export default function Orders() {
                     <p className="text-xs text-text-muted mt-0.5">incl. GST</p>
                   </div>
                 </div>
-              </a>
-            </Link>
+              </Link>
           ))}
 
           {total > 15 && (

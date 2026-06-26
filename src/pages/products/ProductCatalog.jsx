@@ -23,8 +23,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <Link href={`/products/${product.id}`}>
-      <a className="bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow block group overflow-hidden">
+    <Link href={`/products/${product.id}`} className="bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow block group overflow-hidden">
         <div className="aspect-square bg-surface-100 flex items-center justify-center overflow-hidden">
           {product.image_url ? (
             <img src={product.image_url} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -61,8 +60,7 @@ function ProductCard({ product }) {
             )}
           </div>
         </div>
-      </a>
-    </Link>
+      </Link>
   );
 }
 
@@ -99,8 +97,7 @@ export default function ProductCatalog() {
         title="Product Catalog"
         subtitle="Browse our range of cleaning and hygiene products"
         action={
-          <Link href="/cart">
-            <a className="relative flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          <Link href="/cart" className="relative flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
               <ShoppingCart className="w-4 h-4" />
               Cart
               {cartCount > 0 && (
@@ -108,8 +105,7 @@ export default function ProductCatalog() {
                   {cartCount}
                 </span>
               )}
-            </a>
-          </Link>
+            </Link>
         }
       />
 

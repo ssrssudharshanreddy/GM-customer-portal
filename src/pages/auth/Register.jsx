@@ -334,7 +334,7 @@ export default function Register() {
 
       <p className="text-center text-sm text-text-secondary mt-4">
         Already registered?{' '}
-        <Link href="/login"><a className="text-brand-600 font-medium hover:underline">Sign in</a></Link>
+        <Link href="/login" className="text-brand-600 font-medium hover:underline">Sign in</Link>
       </p>
     </AuthLayout>
   );

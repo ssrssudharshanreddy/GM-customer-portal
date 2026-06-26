@@ -35,11 +35,9 @@ export default function ProductDetail() {
 
   return (
     <div>
-      <Link href="/products">
-        <a className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
+      <Link href="/products" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
           <ChevronLeft className="w-4 h-4" /> Back to Catalog
-        </a>
-      </Link>
+        </Link>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image */}
@@ -100,11 +98,9 @@ export default function ProductDetail() {
                   {added ? <Check className="w-5 h-5" /> : <ShoppingCart className="w-5 h-5" />}
                   {added ? 'Added to Cart!' : 'Add to Cart'}
                 </button>
-                <Link href="/cart">
-                  <a className="px-6 py-3 rounded-xl border border-brand-600 text-brand-600 hover:bg-brand-50 font-medium transition-colors">
+                <Link href="/cart" className="px-6 py-3 rounded-xl border border-brand-600 text-brand-600 hover:bg-brand-50 font-medium transition-colors">
                     View Cart
-                  </a>
-                </Link>
+                  </Link>
               </div>
             </>
           )}

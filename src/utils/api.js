@@ -40,7 +40,7 @@ async function request(path, options = {}, retry = true) {
 
   const res = await fetch(`${BASE_URL}${path}`, { ...options, headers });
 
-  if (res.status === 401 && retry) {
+  if (res.status === 401 && retry && path !== '/auth/login') {
     try {
       await refreshAccessToken();
       return request(path, options, false);
@@ -61,7 +61,17 @@ async function request(path, options = {}, retry = true) {
 
   const text = await res.text();
   const json = text ? JSON.parse(text) : null;
-  return json?.success !== undefined && json.data !== undefined ? json.data : json;
+  if (json?.success !== undefined && json.data !== undefined) {
+    if (json.pagination) {
+      return {
+        data: json.data,
+        pagination: json.pagination,
+        total: json.pagination.total,
+      };
+    }
+    return json.data;
+  }
+  return json;
 }
 
 export const api = {
@@ -91,7 +101,17 @@ export const api = {
         throw Object.assign(new Error(body.message || 'Upload failed'), { status: res.status });
       }
       const json = await res.json();
-      return json.success !== undefined && json.data !== undefined ? json.data : json;
+      if (json?.success !== undefined && json.data !== undefined) {
+        if (json.pagination) {
+          return {
+            data: json.data,
+            pagination: json.pagination,
+            total: json.pagination.total,
+          };
+        }
+        return json.data;
+      }
+      return json;
     });
   },
 };

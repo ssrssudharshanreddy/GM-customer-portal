@@ -45,9 +45,7 @@ export default function Invoices() {
       ) : (
         <div className="space-y-3">
           {invoices.map((inv) => (
-            <Link key={inv.id} href={`/invoices/${inv.id}`}>
-              <a className={`block bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow p-4
-                ${inv.status === 'OVERDUE' ? 'border border-red-200' : ''}`}>
+            <Link key={inv.id} href={`/invoices/${inv.id}`} className={`block bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow p-4 ${inv.status === 'OVERDUE' ? 'border border-red-200' : ''}`}>
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
@@ -68,8 +66,7 @@ export default function Invoices() {
                     )}
                   </div>
                 </div>
-              </a>
-            </Link>
+              </Link>
           ))}
 
           {total > 15 && (

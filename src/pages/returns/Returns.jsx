@@ -27,11 +27,9 @@ export default function Returns() {
         title="Returns"
         subtitle={`${total} total return requests`}
         action={
-          <Link href="/returns/new">
-            <a className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          <Link href="/returns/new" className="flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
               <Plus className="w-4 h-4" /> New Return
-            </a>
-          </Link>
+            </Link>
         }
       />
 
@@ -43,11 +41,9 @@ export default function Returns() {
           title="No return requests"
           description="You haven't submitted any return requests yet."
           action={
-            <Link href="/returns/new">
-              <a className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">
+            <Link href="/returns/new" className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">
                 <Plus className="w-4 h-4" /> Request a Return
-              </a>
-            </Link>
+              </Link>
           }
         />
       ) : (

@@ -24,11 +24,9 @@ export default function InvoiceDetail() {
 
   return (
     <div>
-      <Link href="/invoices">
-        <a className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
+      <Link href="/invoices" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-text-primary mb-6">
           <ChevronLeft className="w-4 h-4" /> Back to Invoices
-        </a>
-      </Link>
+        </Link>
 
       <div className="max-w-2xl">
         {/* Header */}
@@ -45,11 +43,9 @@ export default function InvoiceDetail() {
             </div>
             <div className="flex gap-2">
               {isPending && (
-                <Link href="/payments">
-                  <a className="flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+                <Link href="/payments" className="flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors">
                     <CreditCard className="w-4 h-4" /> Pay Now
-                  </a>
-                </Link>
+                  </Link>
               )}
             </div>
           </div>

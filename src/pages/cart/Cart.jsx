@@ -55,11 +55,9 @@ export default function Cart() {
           title="Your cart is empty"
           description="Browse the product catalog and add items to your cart."
           action={
-            <Link href="/products">
-              <a className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">
+            <Link href="/products" className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors">
                 <ArrowRight className="w-4 h-4" /> Browse Products
-              </a>
-            </Link>
+              </Link>
           }
         />
       </div>
@@ -169,11 +167,9 @@ export default function Cart() {
             {placing ? 'Placing Order…' : 'Place Order'}
           </button>
 
-          <Link href="/products">
-            <a className="block text-center text-sm text-brand-600 hover:underline">
+          <Link href="/products" className="block text-center text-sm text-brand-600 hover:underline">
               Continue Shopping
-            </a>
-          </Link>
+            </Link>
         </div>
       </div>
     </div>
