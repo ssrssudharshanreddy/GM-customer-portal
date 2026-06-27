@@ -107,7 +107,11 @@ export default function Register() {
     setLoading(true);
     try {
       const formData = new FormData();
-      Object.entries(form).forEach(([k, v]) => { if (k !== 'confirm_password') formData.append(k, v); });
+      Object.entries(form).forEach(([k, v]) => {
+        if (v !== undefined && v !== null && v !== '') {
+          formData.append(k, v);
+        }
+      });
       if (files.gst_certificate) formData.append('gst_certificate', files.gst_certificate);
       if (files.business_registration) formData.append('business_registration', files.business_registration);
       if (files.address_proof) formData.append('address_proof', files.address_proof);
