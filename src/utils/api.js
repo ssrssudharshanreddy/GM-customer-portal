@@ -97,8 +97,11 @@ export const api = {
       body: formData,
     }).then(async (res) => {
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw Object.assign(new Error(body.message || 'Upload failed'), { status: res.status });
+        const body = await res.json().catch(() => ({ message: res.statusText }));
+        const error = new Error(body.message || body.error || 'Upload failed');
+        error.status = res.status;
+        error.data = body;
+        throw error;
       }
       const json = await res.json();
       if (json?.success !== undefined && json.data !== undefined) {

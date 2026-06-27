@@ -112,15 +112,8 @@ export default function Register() {
       if (files.business_registration) formData.append('business_registration', files.business_registration);
       if (files.address_proof) formData.append('address_proof', files.address_proof);
 
-      await fetch(`${import.meta.env.VITE_API_URL || '/api'}/customers/register`, {
-        method: 'POST',
-        body: formData,
-      }).then(async (res) => {
-        if (!res.ok) {
-          const body = await res.json().catch(() => ({}));
-          throw new Error(body.message || 'Registration failed');
-        }
-        return res.json();
+      await api.upload('/customers/register', formData).catch((err) => {
+        throw new Error(err.message === 'Upload failed' && err.data?.error ? err.data.error : err.message);
       });
 
       setSuccess(true);
