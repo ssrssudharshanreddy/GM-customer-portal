@@ -31,6 +31,7 @@ export default function Register() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const [form, setForm] = useState({
     company_name: '',
@@ -290,8 +291,13 @@ export default function Register() {
 
           <div>
             <label className="block text-sm font-medium text-text-primary mb-1.5">Confirm Password *</label>
-            <input type="password" required value={form.confirm_password} onChange={(e) => set('confirm_password', e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
+            <div className="relative">
+              <input type={showConfirmPass ? 'text' : 'password'} required value={form.confirm_password} onChange={(e) => set('confirm_password', e.target.value)}
+                className="w-full px-3 py-2.5 pr-10 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
+              <button type="button" onClick={() => setShowConfirmPass(!showConfirmPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted">
+                {showConfirmPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
 
           <div className="border-t border-surface-200 pt-4">
