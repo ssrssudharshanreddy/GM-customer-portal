@@ -66,6 +66,9 @@ export const useCartStore = create(
         return { subtotal, gst, grand_total: subtotal + gst, item_count: items.length };
       },
     }),
-    { name: 'gm-cp-cart' }
+    { 
+      name: 'gm-cp-cart',
+      partialize: (state) => ({ items: state.items }),
+    }
   )
 );
