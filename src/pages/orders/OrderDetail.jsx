@@ -129,6 +129,18 @@ export default function OrderDetail() {
             </div>
           </div>
 
+          {order.delivery_pin && (
+            <div className="bg-brand-50 border border-brand-200 rounded-xl shadow-card p-5">
+              <h2 className="text-sm font-semibold text-brand-700 mb-2">Delivery PIN</h2>
+              <p className="text-2xl font-bold tracking-[0.2em] text-brand-600 text-center py-2 bg-white rounded-lg border border-brand-100">
+                {order.delivery_pin}
+              </p>
+              <p className="text-xs text-brand-600 mt-3 text-center leading-relaxed">
+                Please share this PIN with the delivery executive to confirm receipt.
+              </p>
+            </div>
+          )}
+
           {order.invoice_number && (
             <div className="bg-white rounded-xl shadow-card p-5">
               <h2 className="text-sm font-semibold text-text-primary mb-2">Invoice</h2>
