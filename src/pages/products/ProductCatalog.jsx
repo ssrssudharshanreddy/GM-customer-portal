@@ -25,8 +25,8 @@ function ProductCard({ product }) {
   return (
     <Link href={`/products/${product.id}`} className="bg-white rounded-xl shadow-card hover:shadow-elevated transition-shadow block group overflow-hidden">
         <div className="aspect-square bg-surface-100 flex items-center justify-center overflow-hidden">
-          {product.image_url ? (
-            <img src={product.image_url} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          {product.images?.[0] ? (
+            <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           ) : (
             <Package className="w-12 h-12 text-surface-300" />
           )}
@@ -38,7 +38,7 @@ function ProductCard({ product }) {
           </h3>
           <div className="flex items-center gap-1 mb-1">
             <span className="text-sm font-bold text-text-primary">{formatCurrency(product.price)}</span>
-            <span className="text-xs text-text-muted">/{product.unit}</span>
+            <span className="text-xs text-text-muted">/{product.specifications?.pack_size ? `${product.specifications.pack_size} ` : ''}{product.unit}</span>
           </div>
           <p className="text-xs text-text-muted mb-3">+ {product.gst_percent}% GST</p>
 

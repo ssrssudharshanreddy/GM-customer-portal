@@ -41,9 +41,13 @@ export default function ProductDetail() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image */}
-        <div className="aspect-square bg-surface-100 rounded-xl flex items-center justify-center overflow-hidden">
-          {product.image_url ? (
-            <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
+        <div className="aspect-square bg-surface-100 rounded-xl flex items-center justify-center overflow-hidden relative">
+          {product.images?.length > 0 ? (
+            <div className="w-full h-full flex overflow-x-auto snap-x snap-mandatory">
+              {product.images.map((img, i) => (
+                <img key={i} src={img} alt={`${product.name} - ${i + 1}`} className="w-full h-full object-cover shrink-0 snap-center" />
+              ))}
+            </div>
           ) : (
             <Package className="w-24 h-24 text-surface-300" />
           )}
@@ -57,7 +61,7 @@ export default function ProductDetail() {
           <div className="bg-surface-50 rounded-xl p-4 mb-6">
             <div className="flex items-baseline gap-1 mb-1">
               <span className="text-2xl font-bold text-text-primary">{formatCurrency(product.price)}</span>
-              <span className="text-sm text-text-muted">per {product.unit}</span>
+              <span className="text-sm text-text-muted">per {product.specifications?.pack_size ? `${product.specifications.pack_size} ` : ''}{product.unit}</span>
             </div>
             <p className="text-xs text-text-muted">+ {product.gst_percent}% GST</p>
           </div>
