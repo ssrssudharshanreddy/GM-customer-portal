@@ -63,7 +63,7 @@ export default function OrderDetail() {
                     </div>
                     <p className={`text-xs mt-1 font-medium text-center
                       ${done ? 'text-emerald-600' : current ? 'text-brand-600' : 'text-text-muted'}`}>
-                      {step.charAt(0) + step.slice(1).toLowerCase()}
+                      {step === 'OUT_FOR_DELIVERY' ? 'Out for Delivery' : (step.charAt(0) + step.slice(1).toLowerCase())}
                     </p>
                   </div>
                   {idx < ORDER_TIMELINE.length - 1 && (
