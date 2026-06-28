@@ -52,7 +52,8 @@ export default function Cart() {
       };
       const result = await api.post('/orders', payload);
       clearCart();
-      navigate(`/orders/${result.order?.id || result.id}`);
+      const orderId = typeof result === 'string' ? result : (result.order?.id || result.id);
+      navigate(`/orders/${orderId}`);
     } catch (err) {
       setOrderError(err.message || 'Failed to place order. Please try again.');
     } finally {
@@ -200,7 +201,7 @@ export default function Cart() {
           </button>
 
           <Link href="/products" className="block text-center text-sm text-brand-600 hover:underline">
-              Continue Shopping
+              Continue Purchasing...
             </Link>
         </div>
       </div>
