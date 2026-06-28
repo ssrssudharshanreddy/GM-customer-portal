@@ -122,7 +122,6 @@ export default function Profile() {
             <div className="space-y-3 text-sm">
               {[
                 ['Name', profile.contact_person],
-                ['Designation', profile.designation],
                 ['Mobile', profile.phone],
                 ['Email', profile.email || user?.email],
               ].map(([label, value]) => (
