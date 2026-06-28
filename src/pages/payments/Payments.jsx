@@ -21,9 +21,9 @@ function PaymentForm({ invoices, onSuccess }) {
   const qc = useQueryClient();
   const [form, setForm] = useState({
     invoice_id: '',
-    amount_paid: '',
+    amount: '',
     payment_mode: '',
-    transaction_reference: '',
+    reference_number: '',
     remarks: '',
   });
   const [proof, setProof] = useState(null);
@@ -37,7 +37,7 @@ function PaymentForm({ invoices, onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.invoice_id || !form.amount_paid || !form.payment_mode || !form.transaction_reference) {
+    if (!form.invoice_id || !form.amount || !form.payment_mode || !form.reference_number) {
       setError('Please fill all required fields.'); return;
     }
     if (!proof) { setError('Payment proof is required.'); return; }
@@ -45,6 +45,7 @@ function PaymentForm({ invoices, onSuccess }) {
     try {
       const formData = new FormData();
       Object.entries(form).forEach(([k, v]) => { if (v) formData.append(k, v); });
+      formData.append('payment_date', new Date().toISOString().split('T')[0]);
       formData.append('proof', proof);
       await api.upload('/payments', formData);
       qc.invalidateQueries(['my-payments']);
@@ -84,7 +85,7 @@ function PaymentForm({ invoices, onSuccess }) {
           <select value={form.invoice_id} onChange={(e) => {
             set('invoice_id', e.target.value);
             const inv = invoices.find((i) => i.id === e.target.value);
-            if (inv) set('amount_paid', inv.amount_due?.toString() || '');
+            if (inv) set('amount', inv.amount_due?.toString() || '');
           }}
             className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
             <option value="">Select an invoice</option>
@@ -99,7 +100,7 @@ function PaymentForm({ invoices, onSuccess }) {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-sm font-medium text-text-primary mb-1.5">Amount Paid (₹) *</label>
-            <input type="number" step="0.01" min="1" value={form.amount_paid} onChange={(e) => set('amount_paid', e.target.value)}
+            <input type="number" step="0.01" min="1" value={form.amount} onChange={(e) => set('amount', e.target.value)}
               className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
           </div>
           <div>
@@ -116,7 +117,7 @@ function PaymentForm({ invoices, onSuccess }) {
           <label className="block text-sm font-medium text-text-primary mb-1.5">
             UTR / Transaction Reference *
           </label>
-          <input type="text" value={form.transaction_reference} onChange={(e) => set('transaction_reference', e.target.value)}
+          <input type="text" value={form.reference_number} onChange={(e) => set('reference_number', e.target.value)}
             className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 font-mono"
             placeholder="UTR or transaction ID" />
         </div>
