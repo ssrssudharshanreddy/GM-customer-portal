@@ -7,7 +7,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import { ChevronLeft, Package, MapPin, CheckCircle, Circle, Clock } from 'lucide-react';
 
 const ORDER_TIMELINE = [
-  'PENDING', 'CONFIRMED', 'PROCESSING', 'PACKED', 'DISPATCHED', 'DELIVERED',
+  'PENDING', 'CONFIRMED', 'PROCESSING', 'PACKED', 'DISPATCHED', 'OUT_FOR_DELIVERY', 'DELIVERED',
 ];
 
 export default function OrderDetail() {

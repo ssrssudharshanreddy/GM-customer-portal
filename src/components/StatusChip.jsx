@@ -14,6 +14,7 @@ const STATUS_STYLES = {
   PROCESSING: 'bg-violet-100 text-violet-700',
   PACKED: 'bg-sky-100 text-sky-700',
   DISPATCHED: 'bg-amber-100 text-amber-700',
+  OUT_FOR_DELIVERY: 'bg-orange-100 text-orange-700',
   DELIVERED: 'bg-green-100 text-green-700',
   CANCELLED: 'bg-slate-100 text-slate-600',
   STOCK_HOLD: 'bg-red-100 text-red-700',
