@@ -43,11 +43,20 @@ function PaymentForm({ invoices, onSuccess }) {
     if (!proof) { setError('Payment proof is required.'); return; }
     setSubmitting(true); setError('');
     try {
+      const payload = {
+        invoice_id: form.invoice_id,
+        amount: parseFloat(form.amount),
+        payment_mode: form.payment_mode,
+        reference_number: form.reference_number,
+        remarks: form.remarks,
+        payment_date: new Date().toISOString().split('T')[0],
+      };
+      const payment = await api.post('/payments', payload);
+      
       const formData = new FormData();
-      Object.entries(form).forEach(([k, v]) => { if (v) formData.append(k, v); });
-      formData.append('payment_date', new Date().toISOString().split('T')[0]);
-      formData.append('proof', proof);
-      await api.upload('/payments', formData);
+      formData.append('file', proof);
+      await api.upload(`/payments/${payment.id}/receipt`, formData);
+      
       qc.invalidateQueries(['my-payments']);
       qc.invalidateQueries(['my-invoices']);
       qc.invalidateQueries(['my-credit']);
