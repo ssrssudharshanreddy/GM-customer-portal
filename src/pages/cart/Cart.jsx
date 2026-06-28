@@ -95,14 +95,32 @@ export default function Cart() {
                   className="text-text-muted hover:text-red-500 transition-colors">
                   <Trash2 className="w-4 h-4" />
                 </button>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   <button onClick={() => updateQuantity(item.product_id, item.quantity - 1)}
-                    className="w-7 h-7 rounded-lg border border-surface-200 flex items-center justify-center hover:bg-surface-100">
+                    className="w-7 h-7 rounded-lg border border-surface-200 flex items-center justify-center hover:bg-surface-100 transition-colors">
                     <Minus className="w-3.5 h-3.5" />
                   </button>
-                  <span className="text-sm font-semibold w-6 text-center">{item.quantity}</span>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={item.quantity}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^0-9]/g, '');
+                      if (val === '' || val === '0') {
+                        updateQuantity(item.product_id, 0); // will remove if store handles 0
+                      } else {
+                        updateQuantity(item.product_id, parseInt(val, 10));
+                      }
+                    }}
+                    onFocus={(e) => e.target.select()}
+                    onBlur={(e) => {
+                      const val = parseInt(e.target.value, 10);
+                      if (!val || val < 1) updateQuantity(item.product_id, 1);
+                    }}
+                    className="w-10 h-7 text-center text-sm font-semibold border border-surface-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                  />
                   <button onClick={() => updateQuantity(item.product_id, item.quantity + 1)}
-                    className="w-7 h-7 rounded-lg border border-surface-200 flex items-center justify-center hover:bg-surface-100">
+                    className="w-7 h-7 rounded-lg border border-surface-200 flex items-center justify-center hover:bg-surface-100 transition-colors">
                     <Plus className="w-3.5 h-3.5" />
                   </button>
                 </div>
