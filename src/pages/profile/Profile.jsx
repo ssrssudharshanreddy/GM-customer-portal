@@ -77,8 +77,7 @@ export default function Profile() {
                 <p className="font-medium text-text-primary">{formatDate(profile.created_at)}</p>
               </div>
               <div>
-                <p className="text-text-muted text-xs mb-0.5">Customer Code</p>
-                <p className="font-mono font-medium text-text-primary">{profile.customer_code || '—'}</p>
+                {/* customer_code is not tracked in the database, omitting. */}
               </div>
             </div>
           </div>
@@ -92,7 +91,7 @@ export default function Profile() {
             <div className="space-y-3 text-sm">
               {[
                 ['Company Name', profile.company_name],
-                ['Company Type', profile.company_type],
+                ['Company Type', profile.business_type],
                 ['GST Number', profile.gst_number],
               ].map(([label, value]) => (
                 <div key={label}>
@@ -122,9 +121,9 @@ export default function Profile() {
             </div>
             <div className="space-y-3 text-sm">
               {[
-                ['Name', profile.contact_person_name],
+                ['Name', profile.contact_person],
                 ['Designation', profile.designation],
-                ['Mobile', profile.mobile_number],
+                ['Mobile', profile.phone],
                 ['Email', profile.email || user?.email],
               ].map(([label, value]) => (
                 <div key={label} className="flex items-center gap-2">

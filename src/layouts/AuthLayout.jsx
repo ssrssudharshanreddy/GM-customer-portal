@@ -9,7 +9,6 @@ export default function AuthLayout({ children }) {
             </div>
             <span className="text-2xl font-bold text-text-primary">GangaMaxx</span>
           </div>
-          <p className="text-sm text-text-secondary">Customer Portal</p>
         </div>
         <div className="bg-white rounded-2xl shadow-elevated p-8">
           {children}
