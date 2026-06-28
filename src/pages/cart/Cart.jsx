@@ -26,6 +26,13 @@ export default function Cart() {
   const credit = creditData?.credit_account || creditData || {};
   const hasCredit = !credit.credit_limit || credit.available_credit >= grandTotal;
 
+  const { data: profileData } = useQuery({
+    queryKey: ['my-profile'],
+    queryFn: () => api.get('/customers/my/profile'),
+    enabled: items.length > 0,
+  });
+  const profile = profileData?.profile || profileData || {};
+
   const placeOrder = async () => {
     if (items.length === 0) return;
     if (!hasCredit) { setOrderError('Insufficient credit limit for this order.'); return; }
@@ -34,7 +41,14 @@ export default function Cart() {
     try {
       const payload = {
         items: items.map((i) => ({ product_id: i.product_id, quantity: i.quantity })),
-        notes: '',
+        delivery_address: {
+          line1: profile.address_line1 || 'Company Address',
+          line2: profile.address_line2 || '',
+          city: profile.city || 'City',
+          state: profile.state || 'State',
+          pincode: profile.pincode || '000000',
+        },
+        special_instructions: '',
       };
       const result = await api.post('/orders', payload);
       clearCart();
