@@ -20,7 +20,7 @@ export default function TicketDetail() {
   });
 
   const ticket = data?.ticket || data;
-  const messages = ticket?.messages || data?.messages || [];
+  const messages = ticket?.ticket_messages || ticket?.messages || data?.messages || [];
 
   const sendReply = async () => {
     if (!reply.trim()) return;
