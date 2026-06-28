@@ -170,7 +170,7 @@ export default function Payments() {
 
   const { data: paymentsData, isLoading } = useQuery({
     queryKey: ['my-payments'],
-    queryFn: () => api.get('/payments/my'),
+    queryFn: () => api.get('/payments'),
     enabled: tab === 'history',
   });
 
