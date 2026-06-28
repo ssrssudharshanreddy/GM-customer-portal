@@ -28,7 +28,7 @@ export default function Cart() {
 
   const { data: profileData } = useQuery({
     queryKey: ['my-profile'],
-    queryFn: () => api.get('/customers/my/profile'),
+    queryFn: () => api.get('/auth/me'),
     enabled: items.length > 0,
   });
   const profile = profileData?.profile || profileData || {};
