@@ -49,7 +49,8 @@ export default function Returns() {
       ) : (
         <div className="space-y-3">
           {returns.map((ret) => (
-            <div key={ret.id} className="bg-white rounded-xl shadow-card p-4">
+            <Link key={ret.id} href={`/returns/${ret.id}`}>
+              <div className="bg-white rounded-xl shadow-card p-4 hover:shadow-lg transition-shadow cursor-pointer block">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
@@ -71,7 +72,7 @@ export default function Returns() {
                   </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
 
           {total > 15 && (

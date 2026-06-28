@@ -18,6 +18,7 @@ import Payments from './pages/payments/Payments';
 import CreditAccount from './pages/credit/CreditAccount';
 import Returns from './pages/returns/Returns';
 import CreateReturn from './pages/returns/CreateReturn';
+import ReturnDetail from './pages/returns/ReturnDetail';
 import Tickets from './pages/tickets/Tickets';
 import CreateTicket from './pages/tickets/CreateTicket';
 import TicketDetail from './pages/tickets/TicketDetail';
@@ -114,6 +115,9 @@ function CustomerRouter() {
       </Route>
       <Route path="/returns/new">
         <AppShell><CreateReturn /></AppShell>
+      </Route>
+      <Route path="/returns/:id">
+        <AppShell><ReturnDetail /></AppShell>
       </Route>
       <Route path="/returns">
         <AppShell><Returns /></AppShell>

@@ -51,7 +51,7 @@ export default function CreateReturn() {
       if (exists) {
         return { ...f, items: f.items.filter((i) => i.product_id !== item.product_id) };
       }
-      return { ...f, items: [...f.items, { product_id: item.product_id, quantity: item.quantity, product_name: item.product_name }] };
+      return { ...f, items: [...f.items, { order_item_id: item.id, product_id: item.product_id, quantity: item.quantity, product_name: item.product_name }] };
     });
   };
 
@@ -62,14 +62,54 @@ export default function CreateReturn() {
     }
     setSubmitting(true); setError('');
     try {
-      const formData = new FormData();
-      formData.append('order_id', form.order_id);
-      formData.append('reason', form.reason);
-      formData.append('return_type', form.return_type);
-      formData.append('description', form.description);
-      if (form.items.length > 0) formData.append('items', JSON.stringify(form.items));
-      images.forEach((img) => formData.append('images', img));
-      await api.upload('/returns', formData);
+      let payloadItems = [];
+      if (form.return_type === 'FULL') {
+        payloadItems = orderItems.map(item => ({
+          order_item_id: item.id,
+          product_id: item.product_id,
+          quantity: item.quantity,
+          reason: form.reason
+        }));
+      } else {
+        payloadItems = form.items.map(item => ({
+          order_item_id: item.order_item_id,
+          product_id: item.product_id,
+          quantity: item.quantity,
+          reason: form.reason
+        }));
+      }
+
+      if (payloadItems.length === 0) {
+        throw new Error('Please select at least one item to return.');
+      }
+
+      const payload = {
+        order_id: form.order_id,
+        return_type: form.return_type,
+        notes: form.description,
+        items: payloadItems
+      };
+      
+      // Upload images if there are any
+      const res = await api.post('/returns', payload);
+      
+      if (images.length > 0) {
+        const formData = new FormData();
+        images.forEach(img => formData.append('files', img));
+        // Use standard fetch or api config to POST multipart/form-data.
+        // Assuming api.upload exists or we can just use native fetch if not.
+        // I will use native fetch with auth token to be safe if api.upload isn't defined.
+        // Or if api.post doesn't handle FormData well, let's use fetch.
+        const token = localStorage.getItem('token');
+        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/returns/${res.return.id}/proofs`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: formData
+        });
+      }
+
       setSuccess(true);
     } catch (err) {
       setError(err.message || 'Failed to submit return request.');
