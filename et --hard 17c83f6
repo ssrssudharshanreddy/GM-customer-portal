@@ -1,0 +1,39 @@
+[33m5d3adaa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33m0f41511[m HEAD@{1}: checkout: moving from empty-branch to main
+[33m5d3adaa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{2}: commit (initial): chore: initial repository reset
+[33m0f41511[m HEAD@{3}: commit (amend): Initial commit
+[33m030d756[m HEAD@{4}: Branch: renamed refs/heads/main to refs/heads/main
+[33m030d756[m HEAD@{6}: commit: Initial commit
+[33m9120a15[m HEAD@{7}: reset: moving to origin/main
+[33m17c83f6[m HEAD@{8}: checkout: moving from empty-branch to main
+[33m9120a15[m HEAD@{9}: commit (initial): chore: initial repository reset
+[33m17c83f6[m HEAD@{10}: commit: feat: full return tracking and proofs
+[33meb0e753[m HEAD@{11}: commit: fix: use /payments instead of /payments/my for fetching payment history
+[33m116f13d[m HEAD@{12}: commit: fix: split payment submission into JSON POST and file upload
+[33m673e281[m HEAD@{13}: commit: fix: map frontend payment form fields to match backend schema
+[33m047c09c[m HEAD@{14}: commit: feat: display Delivery PIN on Order Detail page
+[33m1285b90[m HEAD@{15}: commit: fix: remove PENDING from timelines
+[33m052040e[m HEAD@{16}: commit: fix: correctly format OUT_FOR_DELIVERY string in timeline UI
+[33m89b1e51[m HEAD@{17}: commit: feat: add OUT_FOR_DELIVERY status to timelines and StatusChips
+[33m5bae1a6[m HEAD@{18}: commit: fix: remove unsupported Designation field from Profile view
+[33m27dfc2e[m HEAD@{19}: commit: fix: map frontend profile fields to correct database column names (contact_person, phone, business_type)
+[33mcbd46d4[m HEAD@{20}: commit: fix: use correct /auth/me endpoint in Cart to auto-fill delivery address
+[33m589a0fa[m HEAD@{21}: commit: fix: handle raw string UUID response correctly when navigating after order placement
+[33m40d4e09[m HEAD@{22}: commit: fix: send delivery_address populated from customer profile during order placement
+[33mca5b1ee[m HEAD@{23}: commit: fix: change persist key to clear corrupted cache and remove problematic unused getter
+[33m254bc20[m HEAD@{24}: commit: fix: persist only items in cartStore to prevent getter override and hydration loss
+[33ma899560[m HEAD@{25}: commit: feat: make cart quantity editable - type directly between - and + buttons
+[33ma751f34[m HEAD@{26}: commit: feat: replace favicon with GangaMaxx logo PNG, update titles and meta tags
+[33m754d492[m HEAD@{27}: commit: feat: integrate products schema updates (images and pack size) in catalog and detail views
+[33m1f89b2b[m HEAD@{28}: commit: Add eye icon to confirm password field
+[33m1f626c0[m HEAD@{29}: commit: Add .gitignore and remove node_modules from git
+[33m97e19a0[m HEAD@{30}: commit: Include confirm_password in payload so backend validation passes
+[33m100e42c[m HEAD@{31}: commit: Fix 404 Route not found on API calls
+[33mf863810[m HEAD@{32}: commit: Update customer-portal components
+[33mbbbad28[m HEAD@{33}: commit: fix: unwrap backend response data wrapper in api.js
+[33m20fecff[m HEAD@{34}: commit: fix: remove hardcoded Vercel secret from vercel.json
+[33m5c7de01[m HEAD@{35}: pull origin main --rebase --allow-unrelated-histories (finish): returning to refs/heads/main
+[33m5c7de01[m HEAD@{36}: pull origin main --rebase --allow-unrelated-histories (pick): Initial customer-portal commit
+[33m6b3da96[m HEAD@{37}: pull origin main --rebase --allow-unrelated-histories (start): checkout 6b3da96f1da5ec0f85766250a8b03aaa913ac75f
+[33m8408279[m HEAD@{38}: Branch: renamed refs/heads/master to refs/heads/main
+[33m8408279[m HEAD@{40}: commit (initial): Initial customer-portal commit
