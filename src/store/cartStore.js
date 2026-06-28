@@ -56,19 +56,9 @@ export const useCartStore = create(
 
       clearCart: () => set({ items: [] }),
 
-      get totals() {
-        const items = get().items;
-        const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
-        const gst = items.reduce(
-          (sum, i) => sum + (i.price * i.quantity * (i.gst_percent || 0)) / 100,
-          0
-        );
-        return { subtotal, gst, grand_total: subtotal + gst, item_count: items.length };
-      },
     }),
     { 
-      name: 'gm-cp-cart',
-      partialize: (state) => ({ items: state.items }),
+      name: 'gm-cart-storage'
     }
   )
 );
