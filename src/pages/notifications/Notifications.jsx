@@ -4,7 +4,7 @@ import { formatRelativeTime } from '../../utils/format';
 import PageHeader from '../../components/PageHeader';
 import EmptyState from '../../components/EmptyState';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { Bell, CheckCheck, Info, AlertTriangle, CheckCircle, CreditCard } from 'lucide-react';
+import { Bell, CheckCheck, Info, AlertTriangle, CheckCircle, CreditCard, Trash2 } from 'lucide-react';
 
 const TYPE_ICONS = {
   ORDER: CheckCircle,
@@ -49,6 +49,15 @@ export default function Notifications() {
     } catch {}
   };
 
+  const deleteNotification = async (e, id) => {
+    e.stopPropagation();
+    try {
+      await api.delete(`/notifications/${id}`);
+      qc.invalidateQueries(['all-notifications']);
+      qc.invalidateQueries(['my-notifications']);
+    } catch {}
+  };
+
   return (
     <div>
       <PageHeader
@@ -77,26 +86,33 @@ export default function Notifications() {
               <div
                 key={notif.id}
                 onClick={() => !notif.is_read && markRead(notif.id)}
-                className={`flex gap-4 p-4 rounded-xl transition-colors cursor-pointer
+                className={`flex gap-4 p-4 rounded-xl transition-colors cursor-pointer group relative
                   ${notif.is_read ? 'bg-white shadow-card' : 'bg-brand-50 border border-brand-100 shadow-card'}`}
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${iconColor}`}>
                   <Icon className="w-5 h-5" />
                 </div>
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 pr-8">
                   {notif.title && (
                     <p className={`text-sm font-semibold mb-0.5 ${notif.is_read ? 'text-text-primary' : 'text-brand-900'}`}>
                       {notif.title}
                     </p>
                   )}
                   <p className={`text-sm ${notif.is_read ? 'text-text-secondary' : 'text-brand-800'}`}>
-                    {notif.message}
+                    {notif.body}
                   </p>
                   <p className="text-xs text-text-muted mt-1">{formatRelativeTime(notif.created_at)}</p>
                 </div>
                 {!notif.is_read && (
                   <div className="w-2 h-2 bg-brand-500 rounded-full flex-shrink-0 mt-2" />
                 )}
+                <button
+                  onClick={(e) => deleteNotification(e, notif.id)}
+                  className="absolute top-4 right-4 p-1.5 text-surface-400 hover:text-red-500 hover:bg-red-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                  title="Delete Notification"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
             );
           })}
