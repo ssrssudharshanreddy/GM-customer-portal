@@ -13,6 +13,7 @@ const STEPS = [
   { status: 'RETURN_APPROVED', label: 'Approved' },
   { status: 'PICKUP_SCHEDULED', label: 'Pickup Scheduled' },
   { status: 'COLLECTED', label: 'Collected' },
+  { status: 'RETURNED_TO_WAREHOUSE', label: 'Received at Warehouse' },
   { status: 'RETURN_COMPLETED', label: 'Completed' },
 ];
 
