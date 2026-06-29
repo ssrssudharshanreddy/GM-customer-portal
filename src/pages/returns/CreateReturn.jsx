@@ -8,10 +8,10 @@ import { Link } from 'wouter';
 
 const RETURN_REASONS = [
   { value: 'DAMAGED', label: 'Damaged Product' },
-  { value: 'WRONG_PRODUCT', label: 'Wrong Product Delivered' },
-  { value: 'QUANTITY_MISMATCH', label: 'Quantity Mismatch' },
+  { value: 'DEFECTIVE', label: 'Defective Product' },
+  { value: 'WRONG_ITEM', label: 'Wrong Product Delivered' },
+  { value: 'EXCESS_QUANTITY', label: 'Excess Quantity' },
   { value: 'QUALITY_ISSUE', label: 'Quality Issue' },
-  { value: 'MISSING_ITEMS', label: 'Missing Items' },
   { value: 'OTHER', label: 'Other' },
 ];
 
