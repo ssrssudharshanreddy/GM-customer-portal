@@ -100,8 +100,8 @@ export default function CreateReturn() {
         // Assuming api.upload exists or we can just use native fetch if not.
         // I will use native fetch with auth token to be safe if api.upload isn't defined.
         // Or if api.post doesn't handle FormData well, let's use fetch.
-        const token = localStorage.getItem('token');
-        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/returns/${res.return.id}/proofs`, {
+        const token = localStorage.getItem('gm_cp_access_token');
+        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/returns/${res.id}/proofs`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`
