@@ -5,8 +5,13 @@ import PageHeader from '../../components/PageHeader';
 import { ChevronLeft, CheckCircle } from 'lucide-react';
 
 const CATEGORIES = [
-  'Order Issue', 'Delivery Issue', 'Payment Issue', 'Invoice Issue',
-  'Return Issue', 'Product Quality', 'Account Issue', 'Other',
+  { value: 'ORDER_ISSUE', label: 'Order Issue' },
+  { value: 'DELIVERY_ISSUE', label: 'Delivery Issue' },
+  { value: 'PAYMENT_ISSUE', label: 'Payment Issue' },
+  { value: 'RETURN_ISSUE', label: 'Return Issue' },
+  { value: 'PRODUCT_QUALITY', label: 'Product Quality' },
+  { value: 'ACCOUNT_ISSUE', label: 'Account Issue' },
+  { value: 'OTHER', label: 'Other' },
 ];
 
 const PRIORITIES = [
@@ -21,7 +26,7 @@ export default function CreateTicket() {
     subject: '',
     category: '',
     priority: 'MEDIUM',
-    description: '',
+    message: '',
   });
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -31,7 +36,7 @@ export default function CreateTicket() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.subject || !form.category || !form.description) {
+    if (!form.subject || !form.category || !form.message) {
       setError('Please fill all required fields.'); return;
     }
     setSubmitting(true); setError('');
@@ -90,7 +95,7 @@ export default function CreateTicket() {
               <select value={form.category} onChange={(e) => set('category', e.target.value)}
                 className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
                 <option value="">Select category</option>
-                {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                {CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
               </select>
             </div>
             <div>
@@ -104,7 +109,7 @@ export default function CreateTicket() {
 
           <div>
             <label className="block text-sm font-medium text-text-primary mb-1.5">Description *</label>
-            <textarea value={form.description} onChange={(e) => set('description', e.target.value)} rows={5}
+            <textarea value={form.message} onChange={(e) => set('message', e.target.value)} rows={5}
               className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
               placeholder="Please describe your issue in detail, including any order numbers, dates, or relevant information…" />
           </div>
