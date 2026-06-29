@@ -95,6 +95,14 @@ export default function ReturnDetail() {
                 <p className="text-sm text-red-700">{ret.rejection_reason}</p>
               </div>
             )}
+
+            {ret.active_pin && (['PICKUP_SCHEDULED', 'OUT_FOR_PICKUP'].includes(ret.status)) && (
+              <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-100 text-center">
+                <p className="text-xs font-medium text-orange-800 mb-1">Return PIN</p>
+                <p className="text-2xl font-mono font-bold tracking-widest text-orange-600">{ret.active_pin}</p>
+                <p className="text-xs text-orange-700 mt-2">Provide this PIN to the pickup executive</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
