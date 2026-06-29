@@ -46,8 +46,9 @@ export default function OrderDetail() {
           <h2 className="text-sm font-semibold text-text-primary mb-5">Order Progress</h2>
           <div className="flex items-center min-w-max">
             {ORDER_TIMELINE.map((step, idx) => {
-              const done = currentStep > idx;
-              const current = currentStep === idx;
+              const isDelivered = order.status === 'DELIVERED';
+              const done = currentStep > idx || (isDelivered && currentStep === idx);
+              const current = currentStep === idx && !isDelivered;
               return (
                 <div key={step} className="flex items-center">
                   <div className="flex flex-col items-center">
