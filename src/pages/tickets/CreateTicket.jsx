@@ -5,13 +5,11 @@ import PageHeader from '../../components/PageHeader';
 import { ChevronLeft, CheckCircle } from 'lucide-react';
 
 const CATEGORIES = [
-  { value: 'ORDER_ISSUE', label: 'Order Issue' },
-  { value: 'DELIVERY_ISSUE', label: 'Delivery Issue' },
-  { value: 'PAYMENT_ISSUE', label: 'Payment Issue' },
-  { value: 'RETURN_ISSUE', label: 'Return Issue' },
-  { value: 'PRODUCT_QUALITY', label: 'Product Quality' },
-  { value: 'ACCOUNT_ISSUE', label: 'Account Issue' },
-  { value: 'OTHER', label: 'Other' },
+  { value: 'ORDER', label: 'Order Issue' },
+  { value: 'DELIVERY', label: 'Delivery Issue' },
+  { value: 'PRODUCT', label: 'Product Quality' },
+  { value: 'PAYMENT', label: 'Payment Issue' },
+  { value: 'ACCOUNT_ISSUES', label: 'Account Issue' },
 ];
 
 const PRIORITIES = [
@@ -38,6 +36,12 @@ export default function CreateTicket() {
     e.preventDefault();
     if (!form.subject || !form.category || !form.message) {
       setError('Please fill all required fields.'); return;
+    }
+    if (form.subject.length < 5) {
+      setError('Subject must be at least 5 characters long.'); return;
+    }
+    if (form.message.length < 10) {
+      setError('Description must be at least 10 characters long.'); return;
     }
     setSubmitting(true); setError('');
     try {
@@ -109,7 +113,7 @@ export default function CreateTicket() {
 
           <div>
             <label className="block text-sm font-medium text-text-primary mb-1.5">Description *</label>
-            <textarea value={form.message} onChange={(e) => set('message', e.target.value)} rows={5}
+            <textarea value={form.message} onChange={(e) => set('message', e.target.value)} rows={5} minLength={10}
               className="w-full px-3 py-2.5 rounded-lg border border-surface-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
               placeholder="Please describe your issue in detail, including any order numbers, dates, or relevant information…" />
           </div>
